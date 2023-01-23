@@ -5,6 +5,11 @@ const {login} = require('../login controllers/loginController.js');
 // const {getUser} = require('./controllers/getUserController');
 const {getUserName} = require('../login controllers/getcontroller.js');
 const { CompanyRegistration } = require('../login controllers/CompanyRegistration.js');
+const { ContactDetails } = require('../login controllers/ContactDetails.js');
+const {ContactDetailsEdit} = require('../login controllers/ContactDetails.js');
+const{UserRoles}=require('../login controllers/UserRoleMaster.js')
+const{Campaign}=require('../login controllers/UserRoleMaster.js')
+
 //const{getAllUser}=require('../login controllers/')
 router.post('/InviteUser', 
 [
@@ -13,8 +18,6 @@ router.post('/InviteUser',
   .escape()
   .trim()
   .isLength({ min: 3 }),
-
-  
   
   body('Username',"The name must be of minimum 3 characters length")
   .notEmpty()
@@ -35,8 +38,6 @@ router.post('/InviteUser',
 ],
  register);
 
-
-
 router.post('/login',[
   body('Email',"Invalid Email address")
   .notEmpty()
@@ -49,6 +50,14 @@ router.post('/login',[
 
 
  router.post('/subs',CompanyRegistration);
+
+ router.post('/contact',ContactDetails);
+ router.put('/contact/edit',ContactDetailsEdit);
+
+
+router.post('/userRole',UserRoles);
+// router.post('/Campaign',Campaign);
+ 
 // router.get('/getoneuser',getUserName);
 
 // router.get('/getuser',getUser)
