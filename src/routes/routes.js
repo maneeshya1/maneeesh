@@ -8,7 +8,9 @@ const { CompanyRegistration } = require('../login controllers/CompanyRegistratio
 const { ContactDetails } = require('../login controllers/ContactDetails.js');
 const {ContactDetailsEdit} = require('../login controllers/ContactDetails.js');
 const{UserRoles}=require('../login controllers/UserRoleMaster.js')
-const{Campaign}=require('../login controllers/UserRoleMaster.js')
+// const{Campaign}=require('../login controllers/UserRoleMaster.js')
+const{Campaign}=require('../login controllers/Campaign.js')
+const{Segment}=require('../login controllers/Segment.js')
 
 //const{getAllUser}=require('../login controllers/')
 router.post('/InviteUser', 
@@ -56,6 +58,8 @@ router.post('/login',[
 
 
 router.post('/userRole',UserRoles);
+router.post('/Campaign',Campaign);
+router.post('/Segment',Segment); 
 // router.post('/Campaign',Campaign);
  
 // router.get('/getoneuser',getUserName);
