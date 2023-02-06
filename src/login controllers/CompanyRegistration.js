@@ -22,10 +22,10 @@ exports.CompanyRegistration = async (req, res, next) => {
     }
 const [rows] =await dbConn.execute(
   
-   'insert into company_ragistration (`company_Id`,`companyName`, `companyEmail`,`companyURL`,`remark`,`companyLocation`, `userid`,`isactive`) values(?,?,?,?,?,?,?,?)',
+   'insert into company_ragistration (`companyName`, `companyEmail`,`companyURL`,`remark`,`companyLocation`, `userid`,`isactive`) values(?,?,?,?,?,?,?)',
   //"insert into company_ragistration (`company_Id`,`companyName`, `companyEmail`,`companyURL`,`remark`,`companyLocation`, `userid`,`isactive`) values(113,'c','c','c','c','c',16,0)",
 [
-        req.body.company_Id,   
+           
           req.body.companyName,  
            req.body.companyEmail, 
             req.body.companyURL,  
