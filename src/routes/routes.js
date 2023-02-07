@@ -55,7 +55,7 @@ router.post('/login',[
 
 
  router.post('/subs',CompanyRegistration);
- router.put('/subs/company',CompanyDetailsEdit);
+router.put('/subs/company',CompanyDetailsEdit);
 
  router.post('/contact',ContactDetails);
  router.put('/contact/edit',ContactDetailsEdit);
