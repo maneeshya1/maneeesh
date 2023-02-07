@@ -46,3 +46,52 @@ exports.CompanyRegistration = async (req, res, next) => {
     next(err);
   }
 };
+
+
+///-------------------------------------------------
+
+exports.CompanyDetailsEdit = async (req, res, next) => {
+
+  try {
+    const [row] = await dbConn.execute(
+      "SELECT * FROM `invite_users` WHERE `UserId`=?",
+      [req.body.UserId]
+    );
+
+    if (row.length === 0) {
+      // return res.status(422).json({
+      return res.json({
+        message: "Invalid UserId",
+      });
+    }
+
+    const [rows1] = await dbConn.execute("UPDATE company_ragistration SET `companyName` =?,`companyEmail`=?,`companyURL`=?,`remark`=?,`companyLocation`=? WHERE `company_Id` = ?",
+      [
+        req.body.companyName,
+        req.body.companyEmail,
+        req.body.companyURL,
+        req.body.remark,
+        req.body.companyLocation,
+        req.body.company_Id,
+
+      ]);
+    if (rows1.affectedRows === 1) {
+      return res.status(201).json({
+        message: "The company details has been successfully updated.",
+        success: req.body,
+
+      });
+    }
+
+    return res.json({
+      success: row,
+      message: "UserID matched Successfully",
+    });
+
+
+  }
+  catch (err) {
+    next(err);
+  }
+};
+

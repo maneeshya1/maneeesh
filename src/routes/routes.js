@@ -5,6 +5,9 @@ const {login} = require('../login controllers/loginController.js');
 // const {getUser} = require('./controllers/getUserController');
 const {getUserName} = require('../login controllers/getcontroller.js');
 const { CompanyRegistration } = require('../login controllers/CompanyRegistration.js');
+const { CompanyDetailsEdit } = require('../login controllers/CompanyRegistration.js');
+
+
 const { ContactDetails } = require('../login controllers/ContactDetails.js');
 const {ContactDetailsEdit} = require('../login controllers/ContactDetails.js');
 const{UserRoles}=require('../login controllers/UserRoleMaster.js')
@@ -52,6 +55,7 @@ router.post('/login',[
 
 
  router.post('/subs',CompanyRegistration);
+ router.put('/subs/company',CompanyDetailsEdit);
 
  router.post('/contact',ContactDetails);
  router.put('/contact/edit',ContactDetailsEdit);
