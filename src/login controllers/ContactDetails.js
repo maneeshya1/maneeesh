@@ -5,6 +5,7 @@ exports.ContactDetails = async (req, res, next) => {
     const [row] = await dbConn.execute(
       // "SELECT * FROM `users` WHERE `Email`=?",
       "SELECT * FROM `company_ragistration` WHERE `company_Id`=?",
+      
       [req.body.company_Id]
     );
 
@@ -36,12 +37,10 @@ exports.ContactDetails = async (req, res, next) => {
       });
     }
 
-
     return res.json({
       success: row,
       message: "companyId matched Successfully",
     });
-
 
   }
   catch (err) {
