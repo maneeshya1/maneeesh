@@ -1,25 +1,32 @@
-const router = require('express').Router();
-const { body } = require('express-validator');
-const { register } = require('../login controllers/registerController.js');
-const { login } = require('../login controllers/loginController.js');
+const router = require("express").Router();
+const { body } = require("express-validator");
+const { register } = require("../login controllers/registerController.js");
+const { login } = require("../login controllers/loginController.js");
 // const {getUser} = require('./controllers/getUserController');
-const { getUserName } = require('../login controllers/getcontroller.js');
-const { CompanyRegistration } = require('../login controllers/CompanyRegistration.js');
-const { CompanyDetailsEdit } = require('../login controllers/CompanyRegistration.js');
-
-const { ContactDetails } = require('../login controllers/ContactDetails.js');
-const { ContactDetailsEdit } = require('../login controllers/ContactDetails.js');
-const { UserRoles } = require('../login controllers/UserRoleMaster.js')
+const { getUserName } = require("../login controllers/getcontroller.js");
+const {
+  CompanyRegistration,
+} = require("../login controllers/CompanyRegistration.js");
+const { ContactDetails } = require("../login controllers/ContactDetails.js");
+const {
+  ContactDetailsEdit,
+} = require("../login controllers/ContactDetails.js");
+const { UserRoles } = require("../login controllers/UserRoleMaster.js");
 // const{Campaign}=require('../login controllers/UserRoleMaster.js')
-const { Campaign } = require('../login controllers/Campaign.js')
-const { CampaignDetailsEdit } = require('../login controllers/Campaign.js')
-
-const { Segment } = require('../login controllers/Segment.js')
+const { Campaign } = require("../login controllers/Campaign.js");
+const { Segment } = require("../login controllers/Segment.js");
+const {
+  getScheduler,
+  addScheduler,
+  getAllScheduler,
+  updateScheduler,
+} = require("../login controllers/Scheduler");
 
 //const{getAllUser}=require('../login controllers/')
-router.post('/InviteUser',
+router.post(
+  "/InviteUser",
   [
-    body('Name', "The name must be of minimum 3 characters length")
+    body("Name", "The name must be of minimum 3 characters length")
       .notEmpty()
       .escape()
       .trim()
@@ -54,7 +61,7 @@ router.post('/login', [
 
 router.get('/getoneuser/:Email', getUserName);
 
-
+   
 router.post('/subs', CompanyRegistration);
 router.put('/subs/company', CompanyDetailsEdit);
 
@@ -75,5 +82,10 @@ router.post('/Segment', Segment);
 
 // router.get('/getuser',getUser)
 // router.get('/getall',getAllUser)
+router.get("/getScheduler/Id=?", getScheduler);
+router.put("/updateScheduler/Id=?", updateScheduler);
+router.post("/addSchedule", addScheduler);
+router.get("/getAllScheduler", getAllScheduler);
+// router.get('/getScheduler/:scheduler_Id',getScheduler);
 
 module.exports = router;
