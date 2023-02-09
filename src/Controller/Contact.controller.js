@@ -12,7 +12,6 @@ exports.findAll = function(req, res) {
   });
 };
 
-
 exports.create = function(req, res) {
     const contacts= req.body.contacts;
    if(req.body.constructor === Object && Object.keys(req.body).length === 0){
@@ -26,7 +25,6 @@ exports.create = function(req, res) {
         });
     }
 };
-
 
 exports.findById = function(req, res) {
     Contact.findById(req.params.contactID, function(err, contact) {
