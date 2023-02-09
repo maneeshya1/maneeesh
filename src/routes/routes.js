@@ -79,6 +79,8 @@ router.post('/Campaign', Campaign);
 router.put('/Campaign/edit', CampaignDetailsEdit);
 
 router.post('/Segment', Segment);
+
+router.get('/getall',getAllUser);
 // router.get('/GetContact/:contact_Email', GetContact);
 
 // router.post('/Campaign',Campaign);
@@ -86,7 +88,6 @@ router.post('/Segment', Segment);
 // router.get('/getoneuser',getUserName);
 
 // router.get('/getuser',getUser)
-router.get('/getall',getAllUser)
 router.get("/getScheduler/Id=?", getScheduler);
 router.put("/updateScheduler/Id=?", updateScheduler);
 router.post("/addSchedule", addScheduler);
