@@ -46,8 +46,10 @@ app.use(function (req, res, next) {
 });
 
 const routes = require('./src/routes/routes');
+const routes1 = require('./src/routes/contact.route');
 
 app.use(routes);
+app.use(routes1);
 
 
 app.listen(port, () => {
