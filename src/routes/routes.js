@@ -14,6 +14,7 @@ const {
 const { UserRoles } = require("../login controllers/UserRoleMaster.js");
 // const{Campaign}=require('../login controllers/UserRoleMaster.js')
 const { Campaign } = require("../login controllers/Campaign.js");
+const { CampaignDetailsEdit } = require("../login controllers/Campaign.js");
 const { Segment } = require("../login controllers/Segment.js");
 const {
   getScheduler,
@@ -22,6 +23,8 @@ const {
   updateScheduler,
 } = require("../login controllers/Scheduler");
 
+const { GetContact,getAllUser } = require('../Controller/GetContact');
+const { CompanyDetailsEdit } = require('../login controllers/CompanyRegistration');
 //const{getAllUser}=require('../login controllers/')
 router.post(
   "/InviteUser",
@@ -61,7 +64,7 @@ router.post('/login', [
 
 router.get('/getoneuser/:Email', getUserName);
 
-   
+
 router.post('/subs', CompanyRegistration);
 router.put('/subs/company', CompanyDetailsEdit);
 
@@ -76,12 +79,14 @@ router.post('/Campaign', Campaign);
 router.put('/Campaign/edit', CampaignDetailsEdit);
 
 router.post('/Segment', Segment);
+// router.get('/GetContact/:contact_Email', GetContact);
+
 // router.post('/Campaign',Campaign);
 
 // router.get('/getoneuser',getUserName);
 
 // router.get('/getuser',getUser)
-// router.get('/getall',getAllUser)
+router.get('/getall',getAllUser)
 router.get("/getScheduler/Id=?", getScheduler);
 router.put("/updateScheduler/Id=?", updateScheduler);
 router.post("/addSchedule", addScheduler);
