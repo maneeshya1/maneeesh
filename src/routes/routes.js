@@ -32,44 +32,50 @@ router.post(
       .trim()
       .isLength({ min: 3 }),
 
-    body("Username", "The name must be of minimum 3 characters length")
+    body('Username', "The name must be of minimum 3 characters length")
       .notEmpty()
       .escape()
       .trim()
       .isLength({ min: 3 }),
 
-    body("Email", "Invalid email address").notEmpty().escape().trim().isEmail(),
+    body('Email', "Invalid email address")
+      .notEmpty()
+      .escape()
+      .trim().isEmail(),
 
     body("Password", "The Password must be of minimum 4 characters length")
       .notEmpty()
       .trim()
       .isLength({ min: 4 }),
-  ],
-  register
-);
 
-router.post(
-  "/login",
-  [
-    body("Email", "Invalid Email address").notEmpty().escape().trim().isEmail(),
-    body("Password", "The Password must be of minimum 4 characters length")
-      .notEmpty()
-      .trim()
-      .isLength({ min: 4 }),
   ],
-  login
-);
+  register);
 
-router.get("/getoneuser/:Email", getUserName);
+router.post('/login', [
+  body('Email', "Invalid Email address")
+    .notEmpty()
+    .escape()
+    .trim().isEmail(),
+  body('Password', "The Password must be of minimum 4 characters length").notEmpty().trim().isLength({ min: 4 }),
+], login);
+
+router.get('/getoneuser/:Email', getUserName);
+
+   
+router.post('/subs', CompanyRegistration);
+router.put('/subs/company', CompanyDetailsEdit);
+
+router.post('/contact', ContactDetails);
+router.put('/contact/edit', ContactDetailsEdit);
 
 router.post("/subs", CompanyRegistration);
 
-router.post("/contact", ContactDetails);
-router.put("/contact/edit", ContactDetailsEdit);
+router.post('/userRole', UserRoles);
 
-router.post("/userRole", UserRoles);
-router.post("/Campaign", Campaign);
-router.post("/Segment", Segment);
+router.post('/Campaign', Campaign);
+router.put('/Campaign/edit', CampaignDetailsEdit);
+
+router.post('/Segment', Segment);
 // router.post('/Campaign',Campaign);
 
 // router.get('/getoneuser',getUserName);
