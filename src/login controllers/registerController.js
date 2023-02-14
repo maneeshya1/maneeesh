@@ -91,10 +91,15 @@ exports.register = async (req, res, next) => {
 
       });
 
+    const [rows1] = await conn.execute('SELECT * FROM invite_users WHERE email = ?',[req.body.Email])
+       
+
+
+     console.log(',,,,,,,,,,,,,,,,,,lwekjfklewh',rows1);
       //................
       return res.status(201).json({
         message: "The user has been successfully inserted. and Email has been sent",
-        Data:req.body,
+        Data:rows1[0],
         
       });
     }

@@ -1,7 +1,7 @@
 const dbConn = require('./../../config/db.config')
 
 exports.getUserName = (req, res) => {
-        dbConn.query('SELECT `Name`,`Email` FROM invite_users WHERE email = ?', [req.params.Email], (err, rows, fields) => {
+        dbConn.query('SELECT `Name`,`Email` FROM invite_users WHERE email = ?', [req.params.email], (err, rows, fields) => {
                 if (!err)
                         res.send(rows);
                 else {
