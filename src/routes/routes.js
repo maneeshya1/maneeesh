@@ -28,6 +28,7 @@ const {
 const { getAllUser } = require('../Controller/GetContact');
 const { CompanyDetailsEdit } = require('../login controllers/CompanyRegistration');
 //const{getAllUser}=require('../login controllers/')
+const{getUserCompanyDataByUserId}=require('../login controllers/userDetailsWithCompanyData')
 router.post(
   "/InviteUser",
   [
@@ -97,5 +98,6 @@ router.put("/updateScheduler/Id=?", updateScheduler);
 router.post("/addSchedule", addScheduler);
 router.get("/getAllScheduler", getAllScheduler);
 // router.get('/getScheduler/:scheduler_Id',getScheduler);
+router.get("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
 
 module.exports = router;
