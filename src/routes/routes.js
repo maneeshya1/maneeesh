@@ -23,9 +23,15 @@ const {
   updateScheduler,
 } = require("../login controllers/Scheduler");
 
-const { GetContact,getAllUser } = require('../Controller/GetContact');
-const { CompanyDetailsEdit } = require('../login controllers/CompanyRegistration');
+const { GetContact, getAllUser } = require("../Controller/GetContact");
+const {
+  CompanyDetailsEdit,
+} = require("../login controllers/CompanyRegistration");
 //const{getAllUser}=require('../login controllers/')
+const {
+  getUserCompanyDataByUserId,
+} = require("../login controllers/userDetailsWithCompanyData");
+
 router.post(
   "/InviteUser",
   [
@@ -35,52 +41,50 @@ router.post(
       .trim()
       .isLength({ min: 3 }),
 
-    body('Username', "The name must be of minimum 3 characters length")
+    body("Username", "The name must be of minimum 3 characters length")
       .notEmpty()
       .escape()
       .trim()
       .isLength({ min: 3 }),
 
-    body('Email', "Invalid email address")
-      .notEmpty()
-      .escape()
-      .trim().isEmail(),
+    body("Email", "Invalid email address").notEmpty().escape().trim().isEmail(),
 
     body("Password", "The Password must be of minimum 4 characters length")
       .notEmpty()
       .trim()
       .isLength({ min: 4 }),
-
   ],
-  register);
+  register
+);
 
-router.post('/login', [
-  body('Email', "Invalid Email address")
-    .notEmpty()
-    .escape()
-    .trim().isEmail(),
-  body('Password', "The Password must be of minimum 4 characters length").notEmpty().trim().isLength({ min: 4 }),
-], login);
+router.post(
+  "/login",
+  [
+    body("Email", "Invalid Email address").notEmpty().escape().trim().isEmail(),
+    body("Password", "The Password must be of minimum 4 characters length")
+      .notEmpty()
+      .trim()
+      .isLength({ min: 4 }),
+  ],
+  login
+);
 
-router.get('/getoneuser/:Email', getUserName);
+router.get("/getoneuser/:Email", getUserName);
 
+router.post("/subs", CompanyRegistration);
+router.put("/subs/company", CompanyDetailsEdit);
 
-router.post('/subs', CompanyRegistration);
-router.put('/subs/company', CompanyDetailsEdit);
+router.post("/contact", ContactDetails);
+router.put("/contact/edit", ContactDetailsEdit);
 
+router.post("/userRole", UserRoles);
 
-router.post('/contact', ContactDetails);
-router.put('/contact/edit', ContactDetailsEdit);
+router.post("/Campaign", Campaign);
+router.put("/Campaign/edit", CampaignDetailsEdit);
 
+router.post("/Segment", Segment);
 
-router.post('/userRole', UserRoles);
-
-router.post('/Campaign', Campaign);
-router.put('/Campaign/edit', CampaignDetailsEdit);
-
-router.post('/Segment', Segment);
-
-router.get('/getall',getAllUser);
+router.get("/getall", getAllUser);
 // router.get('/GetContact/:contact_Email', GetContact);
 
 // router.post('/Campaign',Campaign);
@@ -93,5 +97,6 @@ router.put("/updateScheduler/Id=?", updateScheduler);
 router.post("/addSchedule", addScheduler);
 router.get("/getAllScheduler", getAllScheduler);
 // router.get('/getScheduler/:scheduler_Id',getScheduler);
+router.get("/allCompaniesByUserId/UserId:UserId", getUserCompanyDataByUserId);
 
 module.exports = router;
