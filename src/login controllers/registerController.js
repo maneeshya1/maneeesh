@@ -14,7 +14,16 @@ exports.register = async (req, res, next) => {
 
   try {
 
-
+////---------------------------already exists--------------------------------------------------------------
+const [rowFindUser] = await conn.execute('SELECT * FROM invite_users WHERE email = ?', [req.body.Email])
+console.log('.................................',rowFindUser);
+if (rowFindUser?.length > 0) {
+  return res.json({
+    message: "Email is already exists",
+    success: false,
+  });
+}
+//-------------------------------------------------------------------------------------------------------
 
     const hashPass = await bcrypt.hash(req.body.Password, 12);
 
