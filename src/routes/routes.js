@@ -16,6 +16,7 @@ const { UserRoles } = require("../login controllers/UserRoleMaster.js");
 const { Campaign } = require("../login controllers/Campaign.js");
 const { CampaignDetailsEdit } = require("../login controllers/Campaign.js");
 const { Segment } = require("../login controllers/Segment.js");
+const{UpdateSegment}=require('../login controllers/Segment');
 const{getSegment}=require('../login controllers/getSegment');
 
 const {
@@ -82,6 +83,7 @@ router.post('/Campaign', Campaign);
 router.put('/Campaign/edit', CampaignDetailsEdit);
 
 router.post('/Segment', Segment);
+router.put('/UpdateSegment',UpdateSegment); 
 router.get('/getSegment',getSegment);
 
 
