@@ -48,6 +48,13 @@ app.use(function (req, res, next) {
 const routes = require('./src/routes/routes');
 const routes1 = require('./src/routes/contact.route');
 
+// -----------------------
+const DeleteSegmentRoutes = require('./src/routes/DeleteSegment.route');
+
+app.use('/DeleteSegment', DeleteSegmentRoutes);
+// -----------------------------
+
+
 app.use(routes);
 app.use(routes1);
 

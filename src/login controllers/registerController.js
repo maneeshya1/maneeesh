@@ -14,7 +14,16 @@ exports.register = async (req, res, next) => {
 
   try {
 
-
+////---------------------------already exists--------------------------------------------------------------
+const [rowFindUser] = await conn.execute('SELECT * FROM invite_users WHERE email = ?', [req.body.Email])
+console.log('.................................',rowFindUser);
+if (rowFindUser?.length > 0) {
+  return res.json({
+    message: "Email is already exists",
+    success: false,
+  });
+}
+//-------------------------------------------------------------------------------------------------------
 
     const hashPass = await bcrypt.hash(req.body.Password, 12);
 
@@ -91,10 +100,15 @@ exports.register = async (req, res, next) => {
 
       });
 
+    const [rows1] = await conn.execute('SELECT * FROM invite_users WHERE email = ?',[req.body.Email])
+       
+
+
+     console.log(',,,,,,,,,,,,,,,,,,lwekjfklewh',rows1);
       //................
       return res.status(201).json({
         message: "The user has been successfully inserted. and Email has been sent",
-        Data:req.body,
+        Data:rows1[0],
         
       });
     }

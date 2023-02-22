@@ -5,7 +5,7 @@ const { login } = require("../login controllers/loginController.js");
 // const {getUser} = require('./controllers/getUserController');
 const { getUserName } = require("../login controllers/getcontroller.js");
 const {
-  CompanyRegistration,
+   CompanyRegistration,
 } = require("../login controllers/CompanyRegistration.js");
 const { ContactDetails } = require("../login controllers/ContactDetails.js");
 const {
@@ -16,6 +16,9 @@ const { UserRoles } = require("../login controllers/UserRoleMaster.js");
 const { Campaign } = require("../login controllers/Campaign.js");
 const { CampaignDetailsEdit } = require("../login controllers/Campaign.js");
 const { Segment } = require("../login controllers/Segment.js");
+const{UpdateSegment}=require('../login controllers/Segment');
+const{getSegment}=require('../login controllers/getSegment');
+
 const {
   getScheduler,
   addScheduler,
@@ -23,15 +26,10 @@ const {
   updateScheduler,
 } = require("../login controllers/Scheduler");
 
-const { GetContact, getAllUser } = require("../Controller/GetContact");
-const {
-  CompanyDetailsEdit,
-} = require("../login controllers/CompanyRegistration");
+const { getAllUser } = require('../Controller/GetContact');
+const { CompanyDetailsEdit } = require('../login controllers/CompanyRegistration');
 //const{getAllUser}=require('../login controllers/')
-const {
-  getUserCompanyDataByUserId,
-} = require("../login controllers/userDetailsWithCompanyData");
-
+const{getUserCompanyDataByUserId}=require('../login controllers/userDetailsWithCompanyData')
 router.post(
   "/InviteUser",
   [
@@ -84,7 +82,17 @@ router.put("/Campaign/edit", CampaignDetailsEdit);
 
 router.post("/Segment", Segment);
 
-router.get("/getall", getAllUser);
+router.post('/userRole', UserRoles);
+
+router.post('/Campaign', Campaign);
+router.put('/Campaign/edit', CampaignDetailsEdit);
+
+router.post('/Segment', Segment);
+router.put('/UpdateSegment',UpdateSegment); 
+router.get('/getSegment',getSegment);
+
+
+router.get('/getall',getAllUser);
 // router.get('/GetContact/:contact_Email', GetContact);
 
 // router.post('/Campaign',Campaign);
